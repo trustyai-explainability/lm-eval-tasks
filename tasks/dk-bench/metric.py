@@ -11,6 +11,11 @@ from utils import validate_env_args
 
 logger = logging.getLogger("dk-bench-metric")
 
+''' DK-BENCH IMPLEMENTATION FOR LM-EVAL-HARNESS 
+Based on the InstructLab eval framework (https://github.com/instructlab/instructlab/blob/main/src/instructlab/model/evaluate.py#L30)
+and Ragas' RubricsScore https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/general_purpose/#rubrics-based-scoring
+'''
+
 
 # === DEFINE TASK CONSTANTS ============================================================================================
 SCORE_FEEDBACK = """
