@@ -1,9 +1,12 @@
 import json
 import logging
 import os
+
+import pandas as pd
 import sys
 import requests
 from requests.adapters import HTTPAdapter
+from tqdm import tqdm
 from urllib3 import Retry
 
 sys.path.append(os.path.dirname(__file__))
@@ -35,10 +38,12 @@ SCORING_RUBRICS = {
     "score5_description": "The response is fully accurate, completely aligns with the reference,"
                           " and is clear, thorough, and detailed.",
 }
+MAX_GENERATION_SIZE = len(SCORE_FEEDBACK) + max(len(k) for k in SCORING_RUBRICS.values())
 INSTRUCTION = ("Your task is to assign an appropriate score and provide feedback"
                " to the inputs based solely on the scoring criteria.")
 
 SCORE_REPORTING_FORMAT = "score_{}_count"
+evaluation_counter = None
 
 
 # === JUDGE PROMPT FORMATTERS ==========================================================================================
@@ -90,6 +95,7 @@ def get_inference_payload(model_name, prompt):
         "model": model_name,
         "seed": 42,
         "n": 1,
+        "max_tokens": MAX_GENERATION_SIZE,
         "temperature": 0,
     }
 
@@ -110,7 +116,15 @@ def evaluate(doc, predictions, total_retries=5):
     """
 
     # Read arguments from environment variables
-    _, judge_model_url, judge_model_name, judge_api_key, requests_per_second = validate_env_args()
+    dk_bench_data_path, judge_model_url, judge_model_name, judge_api_key, requests_per_second = validate_env_args()
+
+    # Progress logging logic
+    global evaluation_counter
+    if evaluation_counter is None:
+        num_rows = len(pd.read_json(dk_bench_data_path, orient='records', lines=True))
+        evaluation_counter = tqdm(total=num_rows, desc=f"Evaluating responses via {judge_model_name}")
+    evaluation_counter.update()
+    evaluation_counter.refresh()
 
     # Set up payload for judge model inference request
     headers = {
