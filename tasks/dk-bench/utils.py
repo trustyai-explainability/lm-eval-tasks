@@ -18,10 +18,10 @@ def get_env(variable, variable_desc):
 def validate_env_args():
     """Read all necessary environment arguments, and throw exceptions if any are missing"""
     dataset_path = get_env("DK_BENCH_DATASET_PATH",
-                           "the location of the dk-bench .jsonl file to use in the evaluation.")
+                           "the location of the dk-bench .jsonl file to use in the evaluation")
     judge_model_url = get_env("JUDGE_MODEL_URL", "the URL of your judge model's /chat/completions/ endpoint")
-    judge_model_name = get_env("JUDGE_MODEL_NAME", "the desired judge model name.")
-    judge_api_key = get_env("JUDGE_API_KEY", "the API key for the judge model.")
+    judge_model_name = get_env("JUDGE_MODEL_NAME", "the desired judge model name")
+    judge_api_key = get_env("JUDGE_API_KEY", "the API key for the judge model")
     requests_per_second = os.environ.get("REQUESTS_PER_SECOND", 1)
     return dataset_path, judge_model_url, judge_model_name, judge_api_key, requests_per_second
 
