@@ -12,19 +12,14 @@ metric_list:
     higher_is_better: false
   - metric: score_1_count # total number of score_1 produced by the judge model
     aggregation: !function metric.count
-    higher_is_better: true
   - metric: score_2_count # total number of score_2 produced by the judge model
     aggregation: !function metric.count
-    higher_is_better: true
   - metric: score_3_count # etc
     aggregation: !function metric.count
-    higher_is_better: true
   - metric: score_4_count
     aggregation: !function metric.count
-    higher_is_better: true
   - metric: score_5_count
     aggregation: !function metric.count
-    higher_is_better: true
   - metric: mean_score # average judge score over the entire dataset
     aggregation: mean
     higher_is_better: true
