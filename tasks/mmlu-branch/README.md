@@ -32,7 +32,7 @@ lmeval/bin/lm_eval \
 
 Run a second evaluation with a custom system intruction and compare results against the previous evaluation:
 ```bash
- MMLU_BRANCH_DATASET_PATH=$DATASET_PATH/Users/rob/Downloads/mmlubench_knowledge_rules_and_regulations_bmo.jsonl \
+ MMLU_BRANCH_DATASET_PATH=$DATASET_PATH/mmlubench_knowledge_rules_and_regulations_bmo.jsonl \
  COMPARISON_RESULTS_PATH=results/phi3/samples_mmlu-branch_2025-04-01T10-59-36.383683.jsonl \
 lmeval/bin/lm_eval \
         --model local-completions \
