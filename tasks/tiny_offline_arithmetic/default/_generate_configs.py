@@ -2,9 +2,8 @@ from utils import OPERATIONS
 import yaml
 
 if __name__ == "__main__":
-
     # generate subtask configs
-    with open("tiny_offline_arithmetic_template_yaml", "r") as f:
+    with open("_tiny_offline_arithmetic_template_yaml", "r") as f:
         template = f.read()
 
     for operation in OPERATIONS:

@@ -1,0 +1,13 @@
+aggregate_metric_list:
+- metric: acc
+  weight_by_size: true
+group: tiny_offline_arithmetic_generative
+metadata:
+  version: 1
+task:
+- tiny_offline_arithmetic_addition_generative
+- tiny_offline_arithmetic_subtraction_generative
+- tiny_offline_arithmetic_multiplication_generative
+- tiny_offline_arithmetic_division_generative
+- tiny_offline_arithmetic_modulo_generative
+- tiny_offline_arithmetic_exponentiation_generative
