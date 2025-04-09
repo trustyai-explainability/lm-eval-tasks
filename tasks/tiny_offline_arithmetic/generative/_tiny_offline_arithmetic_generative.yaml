@@ -1,5 +1,6 @@
 aggregate_metric_list:
-- metric: acc
+- filter_list: get_response
+  metric: exact_match
   weight_by_size: true
 group: tiny_offline_arithmetic_generative
 metadata:
