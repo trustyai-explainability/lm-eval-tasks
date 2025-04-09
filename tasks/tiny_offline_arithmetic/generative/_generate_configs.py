@@ -21,8 +21,9 @@ if __name__ == "__main__":
         "task": task_names,
         "aggregate_metric_list": [
             {
-                "metric": "acc",
-                "weight_by_size": True
+                "metric": "exact_match",
+                "weight_by_size": True,
+                "filter_list": "get_response"
             }
         ],
         "metadata": {
