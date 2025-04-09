@@ -149,7 +149,7 @@ def print_questions_df(questions_df):
 def create_dataset(operation_list, random_seed=0):
     """Overwrite the blank placeholder dataset with one we generate"""
     return datasets.Dataset.from_pandas(
-        generate_questions(operation_list=operation_list, random_seed=random_seed, n_questions=5)
+        generate_questions(operation_list=operation_list, random_seed=random_seed, n_questions=5), split=datasets.Split.TRAIN
     )
 
 
