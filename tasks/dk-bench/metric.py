@@ -162,7 +162,7 @@ def evaluate(doc, predictions, total_retries=5):
     except json.JSONDecodeError:
         result['invalid_score_count'] = 1
     else:
-        score = feedback['score']
+        score = feedback.get('score')
 
         # validate that the produced score exists in the rubric, and if so, log it
         if f"score{score}_description" in SCORING_RUBRICS.keys():
