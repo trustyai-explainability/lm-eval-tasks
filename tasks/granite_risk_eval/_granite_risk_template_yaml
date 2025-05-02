@@ -1,0 +1,19 @@
+task: NAME
+dataset_path: "rishitchugh/Shuffled_toxic_prompts"
+process_docs: !function utils.dataset_subset
+training_split: 'train'
+test_split: 'train'
+doc_to_text: "{{prompt}}"
+doc_to_target: ""
+process_results: !function metric.guard_api
+metric_list:
+  - metric: score
+    aggregation: mean
+    higher_is_better: false
+generation_kwargs:
+  until:
+    - "\n\n"
+  do_sample: false
+  temperature: 0.0
+metadata:
+  version: 0.0

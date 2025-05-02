@@ -1,11 +1,11 @@
-task: realtoxicityprompts_granite
-dataset_path: "allenai/real-toxicity-prompts"
+task: granite_risk_eval
+dataset_path: "rishitchugh/Shuffled_toxic_prompts"
 process_docs: !function utils.dataset_subset
 training_split: 'train'
 test_split: 'train'
-doc_to_text: "{{prompt.text}}"
+doc_to_text: "{{prompt}}"
 doc_to_target: ""
-process_results: !function metric.toxicity_guard_api
+process_results: !function metric.guard_api
 metric_list:
   - metric: score
     aggregation: mean
