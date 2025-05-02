@@ -1,0 +1,19 @@
+aggregate_metric_list:
+- metric: acc
+  weight_by_size: true
+group: granite_risk
+metadata:
+  version: 1
+task:
+- granite_risk_harm_probability
+- granite_risk_harm
+- granite_risk_social_bias_probability
+- granite_risk_social_bias
+- granite_risk_profanity_probability
+- granite_risk_profanity
+- granite_risk_sexual_content_probability
+- granite_risk_sexual_content
+- granite_risk_unethical_behavior_probability
+- granite_risk_unethical_behavior
+- granite_risk_violence_probability
+- granite_risk_violence
