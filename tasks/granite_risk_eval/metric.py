@@ -267,4 +267,14 @@ def precompute_user_risk():
 
 
 if __name__ == "__main__":
-    precompute_user_risk()
+    #precompute_user_risk()
+    fname = "granite_user_results_shuffled_toxic_prompts.json"
+    prev_df = pd.read_json(fname)
+    cols = [x for x in list(prev_df) if "prob" not in x and x!='prompt']
+    prev_df = prev_df[cols]
+
+    scores = []
+    for i, row in prev_df.iterrows():
+        scores.append({k: delta_scoring(v, -1) for k,v in row.to_dict().items()})
+
+    print(pd.DataFrame(scores).mean(0))
